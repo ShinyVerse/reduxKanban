@@ -1,3 +1,3 @@
-import Todos from './todos.js';
+import Todos from './components/todos.js';
 
 new Todos();

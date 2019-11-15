@@ -1,5 +1,5 @@
-import store from './store/store';
-import { addTodoTask, removeTodoTask } from './actions/actions';
+import store from '../store/store';
+import { addTodoTask, removeTodoTask } from '../actions/actions';
 
 export default function Todos(){
   // ------ HTML references ------
@@ -73,5 +73,4 @@ export default function Todos(){
   })
   // ------ Render the initial Notes ------
   renderTasks();
-
 }
