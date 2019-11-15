@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Redux Notes</title>
+</head>
+<body>
+
+  <h1>Redux Kanban</h1>
+
+  <h3>Add a Task</h3>
+  <form id="add-task">
+    Title: <br />
+    <input type="text" name="title">
+    <br />
+    Description: <br />
+    <textarea name="description" cols="30" rows="5"></textarea>
+    <br />
+    Points: <br />
+    <input type="text" name="points">
+    <br />
+    <button type="submit" class="add-todo-task">Add Task</button>
+  </form>
+
+  <hr />
+
+  <h3>To Do</h3>
+  <ul id="to-do-tasks">
+    <li>
+      <b>Title</b>
+      <button data-uuid="5">delete</button>
+      <br />
+      <span>Task Description</span>
+      <span>Points</span>
+    </li>
+  </ul>
+
+  <script src="./dist/bundle.js"></script>
+
+</body>
+</html>
