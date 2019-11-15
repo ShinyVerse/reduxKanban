@@ -16,7 +16,7 @@ export default function Todos(){
   }
 
   function renderTasks() {
-    // console.log(store.getState());
+    console.log(store.getState());
     let tasks = store.getState().tasks;
 
     taskList.innerHTML = '';
@@ -43,7 +43,7 @@ export default function Todos(){
         taskList.innerHTML += toDoListItem;
       });
 
-    setDeleteNoteButtonsEventListeners();
+    setDeleteTaskButtonsEventListeners();
   }
 
   // ------ Event Listeners ------
@@ -58,7 +58,7 @@ export default function Todos(){
     // console.log('Title:', addNoteTitle.value, 'Content:', addNoteContent.value);
   });
 
-  function setDeleteNoteButtonsEventListeners() {
+  function setDeleteTaskButtonsEventListeners() {
     let buttons = document.querySelectorAll('.delete-todo-task');
 
     for(let button of buttons) {
