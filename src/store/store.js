@@ -1,4 +1,13 @@
 import { createStore } from 'redux';
-import rootReducer from '../reducers/reducers';
+import reducers from '../reducers/reducers';
 
-export default createStore(rootReducer);
+// const initialState = {
+//   tasks: [{
+//     uuid: '123',
+//     title: 'title',
+//     description: 'desc',
+//     points: '1'
+//   }],
+//   doingTasks: []
+// }
+export default createStore(reducers);
