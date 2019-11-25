@@ -6,6 +6,7 @@ const init = [{
     description: 'desc',
     points: '90'
   }]
+  
 function doingReducer(doingTasks = init, action) {
   switch (action.type) {
     case ADD_DOING_TASK: {

@@ -201,6 +201,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 
 /***/ }),
 
+/***/ "./src/components/done.js":
+/*!********************************!*\
+  !*** ./src/components/done.js ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return Done; });\n/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../store/store */ \"./src/store/store.js\");\n\nfunction Done() {\n  var taskList = document.getElementById('done-tasks');\n\n  function deleteTask(uuid) {\n    console.log('deleting:');\n    console.log(uuid);\n  }\n\n  function renderDoneTasks() {\n    var doneTasks = _store_store__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getState().doneTasks;\n    taskList.innerHTML = '';\n    doneTasks.map(function (task) {\n      var doneListItem = \"\\n      <li>\\n        <b>\".concat(task.title, \"</b>\\n        <button\\n          data-uuid=\\\"\").concat(task.uuid, \"\\\"\\n          class='delete-button'>delete</button>\\n        <br/>\\n        <span>\").concat(task.description, \"</span>\\n        <br/>\\n        <span>Points: \").concat(task.points, \"</span>\\n        <br/>\\n      </li>\\n      \");\n      taskList.innerHTML += doneListItem;\n    });\n    setDeleteTaskButtonsEventListeners();\n  }\n\n  function setDeleteTaskButtonsEventListeners() {\n    var buttons = document.querySelectorAll('.delete-button');\n    buttons.forEach(function (button) {\n      button.addEventListener('click', function () {\n        deleteTask(button.dataset.uuid);\n      });\n    });\n  }\n\n  _store_store__WEBPACK_IMPORTED_MODULE_0__[\"default\"].subscribe(function () {\n    renderDoneTasks();\n  });\n  renderDoneTasks();\n}\n\n//# sourceURL=webpack:///./src/components/done.js?");
+
+/***/ }),
+
 /***/ "./src/components/todos.js":
 /*!*********************************!*\
   !*** ./src/components/todos.js ***!
@@ -221,7 +233,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _components_todos_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/todos.js */ \"./src/components/todos.js\");\n/* harmony import */ var _components_doings_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/doings.js */ \"./src/components/doings.js\");\n\n\nnew _components_todos_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\nnew _components_doings_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"]();\n\n//# sourceURL=webpack:///./src/main.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _components_todos_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/todos.js */ \"./src/components/todos.js\");\n/* harmony import */ var _components_doings_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/doings.js */ \"./src/components/doings.js\");\n/* harmony import */ var _components_done_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/done.js */ \"./src/components/done.js\");\n\n\n\nnew _components_todos_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\nnew _components_doings_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"]();\nnew _components_done_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"]();\n\n//# sourceURL=webpack:///./src/main.js?");
 
 /***/ }),
 
@@ -237,6 +249,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _act
 
 /***/ }),
 
+/***/ "./src/reducers/doneReducer.js":
+/*!*************************************!*\
+  !*** ./src/reducers/doneReducer.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\nfunction _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }\n\nfunction _nonIterableSpread() { throw new TypeError(\"Invalid attempt to spread non-iterable instance\"); }\n\nfunction _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === \"[object Arguments]\") return Array.from(iter); }\n\nfunction _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }\n\nvar ADD_DONE_TASK = 'hi';\nvar init = [{\n  uuid: '70987087',\n  title: 'DONE',\n  description: 'I am done',\n  points: '33'\n}];\n\nfunction doneReducer() {\n  var doneTasks = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : init;\n  var action = arguments.length > 1 ? arguments[1] : undefined;\n\n  switch (action.type) {\n    case ADD_DONE_TASK:\n      return [].concat(_toConsumableArray(doneTasks), [{\n        uuid: action.uuid,\n        title: action.title,\n        description: action.description,\n        points: action.points\n      }]);\n\n    default:\n      return doneTasks;\n  }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (doneReducer);\n\n//# sourceURL=webpack:///./src/reducers/doneReducer.js?");
+
+/***/ }),
+
 /***/ "./src/reducers/reducers.js":
 /*!**********************************!*\
   !*** ./src/reducers/reducers.js ***!
@@ -245,7 +269,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _act
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _todoReducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./todoReducer */ \"./src/reducers/todoReducer.js\");\n/* harmony import */ var _doingReducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./doingReducer */ \"./src/reducers/doingReducer.js\");\n/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ \"./node_modules/redux/es/redux.js\");\n\n\n\nvar reducers = Object(redux__WEBPACK_IMPORTED_MODULE_2__[\"combineReducers\"])({\n  tasks: _todoReducer__WEBPACK_IMPORTED_MODULE_0__[\"default\"],\n  doingTasks: _doingReducer__WEBPACK_IMPORTED_MODULE_1__[\"default\"]\n});\n/* harmony default export */ __webpack_exports__[\"default\"] = (reducers);\n\n//# sourceURL=webpack:///./src/reducers/reducers.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _todoReducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./todoReducer */ \"./src/reducers/todoReducer.js\");\n/* harmony import */ var _doingReducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./doingReducer */ \"./src/reducers/doingReducer.js\");\n/* harmony import */ var _doneReducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./doneReducer */ \"./src/reducers/doneReducer.js\");\n/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ \"./node_modules/redux/es/redux.js\");\n\n\n\n\nvar reducers = Object(redux__WEBPACK_IMPORTED_MODULE_3__[\"combineReducers\"])({\n  tasks: _todoReducer__WEBPACK_IMPORTED_MODULE_0__[\"default\"],\n  doingTasks: _doingReducer__WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  doneTasks: _doneReducer__WEBPACK_IMPORTED_MODULE_2__[\"default\"]\n});\n/* harmony default export */ __webpack_exports__[\"default\"] = (reducers);\n\n//# sourceURL=webpack:///./src/reducers/reducers.js?");
 
 /***/ }),
 
