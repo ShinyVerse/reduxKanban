@@ -26,6 +26,16 @@ export function addDoingTask(title, description, points) {
   }
 }
 
+export function addDoneTask(title, description, points) {
+  return {
+    type: ADD_DONE_TASK,
+    uuid: uuidReq(),
+    title,
+    description,
+    points
+  }
+}
+
 export function removeTodoTask(uuid) {
   return {
     type: REMOVE_TODO_TASK,

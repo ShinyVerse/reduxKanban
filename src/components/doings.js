@@ -1,5 +1,5 @@
 import store from '../store/store';
-import { addDoingTask, removeDoingTask, addTodoTask } from '../actions/actions';
+import { addDoingTask, removeDoingTask, addTodoTask, addDoneTask } from '../actions/actions';
 
 export default function Doings() {
   let doingTaskList = document.getElementById('doing-tasks');
@@ -11,6 +11,10 @@ export default function Doings() {
 
   function returnTaskToTodo(title, description, points) {
     store.dispatch(addTodoTask(title, description, points));
+  }
+
+  function promoteTaskToDone(title, description, points) {
+    store.dispatch(addDoneTask(title, description, points))
   }
 
   function renderDoingTasks(){
@@ -35,6 +39,11 @@ export default function Doings() {
             data-title="${task.title}"
             data-description="${task.description}"
             data-points="${task.points}" class="return-to-todo">Back to Todo</button>
+            <button
+              data-uuid="${task.uuid}"
+              data-title="${task.title}"
+              data-description="${task.description}"
+              data-points="${task.points}" class="move-to-done">Move to Done</button>
         </li>
       `
 
@@ -43,6 +52,7 @@ export default function Doings() {
     })
     setDeleteTaskButtonsEventListeners();
     setMoveBackTaskButtonsEventListeners();
+    setMoveToDoneTaskButtonsEventListeners();
   }
 
   function setDeleteTaskButtonsEventListeners() {
@@ -66,6 +76,22 @@ export default function Doings() {
         let points = button.dataset.points;
 
         returnTaskToTodo(title, description, points)
+        deleteTask(button.dataset.uuid)
+      })
+    })
+  }
+
+  function setMoveToDoneTaskButtonsEventListeners() {
+    let buttons = document.querySelectorAll('.move-to-done');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+
+        let title = button.dataset.title;
+        let description = button.dataset.description;
+        let points = button.dataset.points;
+
+        promoteTaskToDone(title, description, points)
         deleteTask(button.dataset.uuid)
       })
     })

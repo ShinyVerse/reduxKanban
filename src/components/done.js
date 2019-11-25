@@ -18,7 +18,7 @@ export default function Done() {
         <b>${task.title}</b>
         <button
           data-uuid="${task.uuid}"
-          class='delete-button'>delete</button>
+          class='complete-button'>Complete</button>
         <br/>
         <span>${task.description}</span>
         <br/>
@@ -33,7 +33,7 @@ export default function Done() {
   }
 
   function setDeleteTaskButtonsEventListeners(){
-    let buttons = document.querySelectorAll('.delete-button')
+    let buttons = document.querySelectorAll('.complete-button')
 
     buttons.forEach(button => {
       button.addEventListener('click', () => {
