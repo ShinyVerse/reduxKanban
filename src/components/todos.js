@@ -1,5 +1,5 @@
 import store from '../store/store';
-import { addTodoTask, removeTodoTask } from '../actions/actions';
+import { addTodoTask, removeTodoTask, addDoingTask } from '../actions/actions';
 
 export default function Todos(){
   // ------ HTML references ------
@@ -13,6 +13,10 @@ export default function Todos(){
   function deleteNote(uuid) {
     store.dispatch(removeTodoTask(uuid))
     // console.log(index);
+  }
+
+  function promoteTaskToDoing(title, description, points) {
+    store.dispatch(addDoingTask(title, description, points));
   }
 
   function renderTasks() {
@@ -44,6 +48,7 @@ export default function Todos(){
       });
 
     setDeleteTaskButtonsEventListeners();
+    setMoveToDoingButtonsEventListeners();
   }
 
   // ------ Event Listeners ------
@@ -66,6 +71,20 @@ export default function Todos(){
         deleteNote(button.dataset.uuid);
       });
     }
+  }
+
+  function setMoveToDoingButtonsEventListeners() {
+    let buttons = document.querySelectorAll('.move-to-doing');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        let title = button.dataset.title;
+        let description = button.dataset.description;
+        let points = button.dataset.points;
+        promoteTaskToDoing(title, description, points)
+        deleteNote(button.dataset.uuid)
+      });
+    })
   }
 
   store.subscribe(() => {

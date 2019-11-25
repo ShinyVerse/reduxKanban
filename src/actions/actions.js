@@ -14,10 +14,10 @@ export function addTodoTask(title, description, points) {
   }
 }
 
-export function addDoingTask(uuid, title, description, points) {
+export function addDoingTask(title, description, points) {
   return {
     type: ADD_DOING_TASK,
-    uuid,
+    uuid: uuidReq(),
     title,
     description,
     points
