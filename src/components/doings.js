@@ -1,5 +1,5 @@
 import store from '../store/store';
-import { addDoingTask, removeDoingTask } from '../actions/actions';
+import { addDoingTask, removeDoingTask, addTodoTask } from '../actions/actions';
 
 export default function Doings() {
   let doingTaskList = document.getElementById('doing-tasks');
@@ -7,6 +7,10 @@ export default function Doings() {
 
   function deleteTask(uuid) {
     store.dispatch(removeDoingTask(uuid));
+  }
+
+  function returnTaskToTodo(title, description, points) {
+    store.dispatch(addTodoTask(title, description, points));
   }
 
   function renderDoingTasks(){
@@ -26,6 +30,11 @@ export default function Doings() {
           <br/>
           <span >Points: ${task.points}</span>
           <br/>
+          <button
+            data-uuid="${task.uuid}"
+            data-title="${task.title}"
+            data-description="${task.description}"
+            data-points="${task.points}" class="return-to-todo">Back to Todo</button>
         </li>
       `
 
@@ -33,6 +42,7 @@ export default function Doings() {
 
     })
     setDeleteTaskButtonsEventListeners();
+    setMoveBackTaskButtonsEventListeners();
   }
 
   function setDeleteTaskButtonsEventListeners() {
@@ -43,6 +53,22 @@ export default function Doings() {
         deleteTask(button.dataset.uuid);
       });
     }
+  }
+
+  function setMoveBackTaskButtonsEventListeners() {
+    let buttons = document.querySelectorAll('.return-to-todo');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+
+        let title = button.dataset.title;
+        let description = button.dataset.description;
+        let points = button.dataset.points;
+
+        returnTaskToTodo(title, description, points)
+        deleteTask(button.dataset.uuid)
+      })
+    })
   }
 
   store.subscribe(() => {
