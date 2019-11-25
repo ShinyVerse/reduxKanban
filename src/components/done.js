@@ -1,11 +1,11 @@
 import store from '../store/store';
+import { removeDoneTask } from '../actions/actions';
 
 export default function Done() {
   let taskList = document.getElementById('done-tasks');
 
   function deleteTask(uuid) {
-    console.log('deleting:');
-    console.log(uuid);
+    store.dispatch(removeDoneTask(uuid));
   }
 
   function renderDoneTasks() {

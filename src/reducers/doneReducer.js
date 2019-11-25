@@ -1,4 +1,4 @@
-const ADD_DONE_TASK = 'hi'
+import { REMOVE_DONE_TASK, ADD_DONE_TASK } from '../actions/actions'
 
 const init = [{
     uuid: '70987087',
@@ -19,6 +19,8 @@ function doneReducer(doneTasks = init, action) {
           points: action.points
         }
       ]
+    case REMOVE_DONE_TASK:
+      return doneTasks.filter(task => task.uuid !== action.uuid);
 
     default:
       return doneTasks;
