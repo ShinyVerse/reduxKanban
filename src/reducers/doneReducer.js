@@ -7,7 +7,7 @@ const init = [{
     points: '33'
   }]
 
-function doneReducer(doneTasks = init, action) {
+function doneReducer(doneTasks = [], action) {
   switch (action.type) {
     case ADD_DONE_TASK:
       return [
