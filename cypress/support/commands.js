@@ -18,6 +18,30 @@
     cy.get('#todo-points')
       .type(points)
   })
+
+  Cypress.Commands.add('eraseTodoForm', () => {
+    cy.get('#todo-title')
+      .clear();
+
+    cy.get('#todo-description')
+      .clear();
+
+    cy.get('#todo-points')
+      .clear();
+  })
+
+  Cypress.Commands.add('createAndAddTodo', (title, description, points) => {
+    cy.createTodo(title, description, points);
+    cy.get('.add-todo-task').click();
+    cy.eraseTodoForm();
+  })
+
+  Cypress.Commands.add('createDefaultDoing', (title, description, points) => {
+    cy.createAndAddTodo(title, description, points);
+    cy.get('.move-to-doing').click();
+  })
+
+
 // -- This is a parent command --
 // Cypress.Commands.add("login", (email, password) => { ... })
 //
